@@ -1,11 +1,10 @@
 import dotenv from "dotenv"
-import express from "express"
 import DB_Connect from "./db/index.js"
+import app from "./app.js"
 
 dotenv.config({
     path:"./.env"
 })
-const app = express()
 
 DB_Connect().
 then(()=>{   
@@ -13,13 +12,13 @@ then(()=>{
         console.log("Error: ",error)
         throw error
     })
-
-    app.listen(process.env.PORT,()=>{
-        console.log("Server listening at port:",process.env.PORT)
-    })
+    
+        app.listen(process.env.PORT,()=>{
+            console.log("Server listening at port:",process.env.PORT)
+        })
 })
 .catch((error)=>{
-    console.log("Database connection failed")
+    console.log("Database connection failed. Error:",error)
 })
 
 
@@ -27,4 +26,5 @@ app.get("/",(req,res)=>{
     res.send("database is connected successfully")
 })
 
+export default app
 

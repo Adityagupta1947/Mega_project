@@ -18,4 +18,7 @@ app.use(express.static())
 
 // configuration settings done
 
-app.listen(process.env.PORT,)
+
+
+export default app
+
